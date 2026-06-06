@@ -25,7 +25,7 @@
       --rose:     #D4A5A5;
       --sage:     #5C7A50;
       --sage-lt:  rgba(92,122,80,0.15);
-      --dark:     #2A2218;
+      --dark:     #354A2C;
       --mid:      #6B5B45;
       --light:    #A8977E;
       --border:   rgba(92,122,80,0.25);
@@ -678,18 +678,18 @@
   <div id="activities" class="section-wrap" style="background:var(--white);">
     <div class="section-inner">
       <span class="s-label reveal">Активності</span>
-      <h2 class="s-title reveal d1">Що вас <em>чекає</em></h2>
+      <h2 class="s-title reveal d1">Що на нас <em>чекає</em></h2>
 
       <div class="act-grid">
         <div class="act-card reveal d2">
           <span class="act-emoji">📸</span>
-          <div class="act-name">Полароїд & Альбом</div>
-          <p class="act-desc">Зробіть знімок на полароїд, вклейте його в наш спільний альбом і напишіть побажання — це залишиться з нами назавжди.</p>
+          <div class="act-name">Полароїд-зона та книга побажань</div>
+          <p class="act-desc">Зробіть 2 знімки на полароїд, один залиште собі, а другий вклейте у наш спільний альбом і напишіть побажання — це залишиться з нами назавжди.</p>
         </div>
         <div class="act-card reveal d3">
-          <span class="act-emoji">📋</span>
-          <div class="act-name">Анкета</div>
-          <p class="act-desc">Відповіси на запитання про молодят. Офлайн-активність прямо на місці — весело, тепло і зовсім несподівано.</p>
+          <span class="act-emoji">🏆</span>
+          <div class="act-name">Вікторина про наречених</div>
+          <p class="act-desc">Питання про нашу пару та нашу історію. Головний приз — вечеря з молодятами після весілля.</p>
         </div>
       </div>
     </div>
@@ -705,26 +705,16 @@
       <div class="qr-inner reveal">
 
         <div class="qr-text">
-          <span class="s-label">Ваші фото</span>
+          <span class="s-label">POV — спільний фотоальбом</span>
           <h2 class="s-title">Поділіться <em>моментами</em></h2>
           <p class="qr-desc">
-            Скануйте QR-код і завантажуйте фото прямо зі свого телефону —
-            разом ми збережемо цей день з кожної точки зору.
+            Відскануйте QR-код — і ви в спільному альбомі. Застосунок скачувати не потрібно: програма сама підкаже кілька простих кроків після сканування. Далі просто фотографуйте — всі знімки збираються в одному місці і видні всім гостям одразу.
           </p>
-          <ul class="qr-steps">
-            <li><span class="qr-step-num">1</span> Відскануйте код камерою телефону</li>
-            <li><span class="qr-step-num">2</span> Відкриється застосунок для завантаження фото</li>
-            <li><span class="qr-step-num">3</span> Діліться моментами — ми побачимо все 💛</li>
-          </ul>
         </div>
 
         <div class="qr-box">
-          <div class="qr-frame" id="qr-frame">
-            <!-- QR code renders here via JS when PHOTO_APP_URL is set -->
-            <div class="qr-placeholder" id="qr-placeholder">
-              <!-- Decorative faux-QR grid -->
-              <div class="qr-placeholder-grid" id="faux-qr"></div>
-            </div>
+          <div class="qr-frame">
+            <img src="img/QR.JPG" alt="QR code for photo sharing" />
           </div>
           <span class="qr-caption">Сканувати камерою</span>
         </div>
@@ -978,42 +968,6 @@
       document.querySelectorAll('.reveal').forEach(el => io.observe(el));
     })();
 
-    /* ─────────────────────────────────────
-       QR Code
-    ───────────────────────────────────── */
-    (function() {
-      // Generate faux decorative QR pattern
-      const grid = document.getElementById('faux-qr');
-      if (grid) {
-        const pat = [
-          1,1,1,0,1,1,1,
-          1,0,1,0,1,0,1,
-          1,0,1,1,1,0,1,
-          0,1,0,1,0,1,0,
-          1,0,1,1,1,0,1,
-          1,0,1,0,1,0,1,
-          1,1,1,0,1,1,1,
-        ];
-        pat.forEach(v => {
-          const cell = document.createElement('div');
-          if (v) cell.className = 'qr-cell';
-          grid.appendChild(cell);
-        });
-      }
-
-      // If URL is set — load real QR via qrserver.com API
-      const url = CONFIG.PHOTO_APP_URL;
-      if (url) {
-        const frame = document.getElementById('qr-frame');
-        const ph    = document.getElementById('qr-placeholder');
-        ph.style.display = 'none';
-        const img = document.createElement('img');
-        img.src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=0&color=2A2218&bgcolor=FDF8F0&data=${encodeURIComponent(url)}`;
-        img.alt = 'QR код для завантаження фото';
-        img.style.cssText = 'width:100%;height:100%;object-fit:contain;border-radius:1px;';
-        frame.appendChild(img);
-      }
-    })();
 
     /* ─────────────────────────────────────
        Wishlist — Supabase backend
