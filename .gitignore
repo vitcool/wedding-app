@@ -1,0 +1,16 @@
+# ── OS ──
+.DS_Store
+Thumbs.db
+
+# ── Secrets ──
+.env
+.env.local
+.env.*.local
+
+# ── Supabase service_role key — NEVER commit ──
+# anon key is public and safe to commit directly in index.html
+# service_role key has full admin access — server-side only
+
+# ── Other ──
+*.log
+node_modules/
